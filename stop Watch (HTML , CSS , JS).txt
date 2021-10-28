@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Stop Watch
+    </title>
+    <style>
+        body{
+            background: url(https://media.istockphoto.com/photos/light-blue-and-teal-defocused-blurred-motion-abstract-background-picture-id1185549205?k=20&m=1185549205&s=612x612&w=0&h=z2jkEGBV8lctFsPKuhtwjOpBYLqdPUI2sAK-3HJHdKo=) no-repeat;
+            background-size: cover;
+        }
+        .stop{
+            width:400px;
+            height:500px;
+            border-radius: 30px;
+            background: url(https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-corporate-culture-stopwatch-background-material-image_139591.jpg) no-repeat;
+            background-size: cover;
+            margin: 100px auto;
+            padding: 100px;
+            box-sizing: border-box;
+        }
+        h1{
+            color:white;
+            margin: 40px auto;
+            padding: 1px;
+
+        }
+        .time:hover{
+            background-color: rgb(218, 245, 252);
+            color:black;    
+        }
+        button{
+            width:60px;
+            height:30px;
+            background-color: rgb(95, 78, 243);
+            color:white;
+            border-radius: 30px;
+            margin: 10px auto;
+            padding: 5px;
+        } 
+        button:hover{
+            background-color: rgb(218, 245, 252);
+            color:black;
+        } 
+
+        .back{
+            width:80px;
+            height:30px;
+            background-color: rgb(95, 78, 243);
+            color:white;
+            border-radius: 50px;
+            margin: 60px
+        }
+        .back:hover{
+            background-color: rgb(218, 245, 252);
+            color: black;
+        }  
+    
+
+
+    </style>
+</head>
+<body>
+    <div class="stop">
+       
+        <center>
+            <h1>Stop watch</h1>
+            <h1 class="time"><span id="hr">00</span>:<span id="min">00</span>:<span id="sec">00</span>:<span id="micro">000</span></h1>
+            <button id="button-start">Start</button>
+            <button id="button-stop">Stop</button>
+            <button id="button-reset">Reset</button>
+        </center>
+        <center>
+            <a href="C:\Users\Admin\Desktop\Clock\projectclock.html">
+                <button class="back">Clock</button>
+            </a>
+        </center>
+    </div>
+    <script>
+        var hr=00;
+        var min=00;
+        var sec=00;
+        var micro=000;
+
+        var ahr = document.getElementById("hr");
+        var amin = document.getElementById("min");
+        var asec = document.getElementById("sec");
+        var amicro = document.getElementById("micro");
+
+        var buttonstart = document.getElementById("button-start");
+        var buttonstop = document.getElementById("button-stop");
+        var buttonreset = document.getElementById("button-reset");
+        var interval;
+
+        function startTimer(){
+            micro++;
+            if(micro < 9){
+                amicro.innerHTML = "0" + "0" + micro;
+            }
+            if(micro > 9){
+                amicro.innerHTML = "0" + micro;
+            }
+            if(micro > 100){
+                amicro.innerHTML = micro;
+                
+            }
+            if(micro > 250){
+                sec++;
+                asec.innerHTML = "0" + sec;
+                micro=0;
+                amicro.innerHTML = "0" + "0" +  0;
+            }
+            if(sec > 9){
+                asec.innerHTML = sec;
+            }
+            if(sec>60){
+                min++;
+                amin.innerHTML = "0" + min;
+                sec = 0;
+                asec.innerHTML = "0" + 0;
+            }
+            if(min>9){
+                amin.innerHTML = min;
+            }
+            if(min>60){
+                hr++;
+                ahr.innerHTML = "0" + hr;
+                min = 0;
+                amin.innerHTML = "0" + 0;
+            }
+            if(hr>9){
+                ahr.innerHTML = hr;
+            }
+            if(hr>24){
+                hr=0;
+                ahr.innerHTML = "0" + 0;
+                min = 0;
+                amin.innerHTML = "0" + 0;
+                sec = 0;
+                asec.innerHTML = "0" + 0;
+                micro = 0;
+                amicro.innerHTML = "0" + "0" + 0;
+            }            
+        }
+        buttonstart.onclick = function(){
+            interval = setInterval(startTimer);
+        };
+
+        buttonstop.onclick = function(){
+            clearInterval(interval);
+        };
+
+        buttonreset.onclick = function(){
+            clearInterval(interval);
+            micro = "000";
+            sec = "00";
+            min = "00";
+            hr = "00";
+            amicro.innerHTML = micro;
+            asec.innerHTML = sec;
+            amin.innerHTML = min;
+            ahr.innerHTML = hr; 
+
+        };
+      
+
+        
+
+    </script>
+
+
+</body>
+</html>
